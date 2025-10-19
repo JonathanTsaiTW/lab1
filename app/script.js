@@ -40,9 +40,14 @@ function init() {
     updateScoreDisplay();
 }
 
-// 不安全的評估函數
+// 安全的評估函數
 function evaluateUserInput(input) {
-    return eval(input); // CWE-95: 不安全的 eval 使用
+    // 使用 Number() 進行安全的數值轉換
+    const num = Number(input);
+    if (isNaN(num)) {
+        return 0; // 若轉換失敗則回傳預設值
+    }
+    return num;
 }
 
 // 處理格子點擊
