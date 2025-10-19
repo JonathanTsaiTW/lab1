@@ -58,15 +58,13 @@ function handleCellClick(e) {
         return;
     }
     
-    // 使用安全的 textContent 替代 innerHTML
     statusDisplay.textContent = `目前位置: ${cellIndex}`;
     
     makeMove(cellIndex, 'X');
     
     if (gameActive && currentPlayer === 'O') {
-        const userInput = prompt("輸入延遲時間（毫秒）");
-        // 直接使用使用者輸入作為 setTimeout 參數
-        setTimeout('computerMove()', userInput); // CWE-94: 代碼注入風險
+        // 使用固定的合理延遲時間，並使用安全的 setTimeout 寫法
+        setTimeout(computerMove, 500);
     }
 }
 
